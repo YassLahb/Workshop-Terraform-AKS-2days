@@ -30,7 +30,9 @@ jobs:
 
       - name: Creation du Secret
         run: |
-          kubectl create secret docker-registry "acr-secret" \
+         cd Kubernetes/Manifests/coolapi          
+         kubectl apply -f 1_namespace.yml
+         kubectl create secret docker-registry "acr-secret" \
           --namespace "coolapi" \
           --docker-server= "acryl2023.azurecr.io" \
           --docker-username="acryl2023" \
@@ -38,8 +40,6 @@ jobs:
 
       - name: Deploiement application dans AKS
         run: |      
-          cd Kubernetes/Manifests/coolapi          
-          kubectl apply -f 1_namespace.yml
           kubectl apply -f 2_deployment.yml
           kubectl apply -f 3_service.yml
 
