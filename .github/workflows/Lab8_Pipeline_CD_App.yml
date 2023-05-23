@@ -39,7 +39,8 @@ jobs:
           --docker-password="7pUfNg8KuGixuczm9yHEkqgfnayvM4hx46Jh89sas6+ACRCZYLWA"
 
       - name: Deploiement application dans AKS
-        run: |      
+        run: |
+          cd Kubernetes/Manifests/coolapi
           kubectl apply -f 2_deployment.yml
           kubectl apply -f 3_service.yml
 
