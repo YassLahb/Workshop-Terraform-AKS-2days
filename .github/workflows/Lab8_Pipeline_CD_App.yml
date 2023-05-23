@@ -28,6 +28,14 @@ jobs:
         run: |
           az aks get-credentials --resource-group ${{ env.RG_NAME }} --name ${{ env.CLUSTER_NAME }}
 
+      - name: Creation du Secret
+        run: |
+          kubectl create secret docker-registry "acr-secret" \
+          --namespace "coolapi" \
+          --docker-server= "acryl2023.azurecr.io" \
+          --docker-username="acryl2023" \
+          --docker-password="7pUfNg8KuGixuczm9yHEkqgfnayvM4hx46Jh89sas6+ACRCZYLWA"
+
       - name: Deploiement application dans AKS
         run: |      
           cd Kubernetes/Manifests/coolapi          
